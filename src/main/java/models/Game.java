@@ -53,6 +53,12 @@ public class Game {
     public void makeMove(Player player, int row, int col) {
         //TODO handle scenario where player makes move on pre occupied cell
         //TODO handle draw case
+
+        Player currPlayer = getCurrPlayer();
+        System.out.println(currPlayer.getName() + "'s turn, give row and col");
+        currPlayer.makeMove(getBoard());
+
+
         Cell cell = this.board.setPlayer(player,row,col);
         Move move = new Move(cell, getCurrPlayer());
         moves.add(move);

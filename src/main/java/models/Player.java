@@ -1,6 +1,10 @@
 package main.java.models;
 
+import java.util.Scanner;
+
 public class Player {
+
+    Scanner scanner = new Scanner(System.in);
 
     protected String name;
     protected Character symbol;
@@ -17,4 +21,12 @@ public class Player {
     public Character getSymbol() {
         return symbol;
     }
+
+    public void makeMove(Board board){
+        //Input row and col
+        //Check for Validations, if we can make move there
+        int row = scanner.nextInt();
+        int col = scanner.nextInt();
+    }
+
 }
