@@ -1,4 +1,4 @@
-package main.java.Strategy;
+package main.java.Strategy.winning;
 
 import main.java.models.Board;
 import main.java.models.Cell;

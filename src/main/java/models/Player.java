@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Player {
 
-    Scanner scanner = new Scanner(System.in);
 
     protected String name;
     protected Character symbol;
@@ -22,11 +21,15 @@ public class Player {
         return symbol;
     }
 
-    public void makeMove(Board board){
+    public Move makeMove(Board board){
         //Input row and col
         //Check for Validations, if we can make move there
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(getName() + "'s turn, give row and col");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
+        Cell cell = board.setPlayer(this,row,col);
+        return new Move(cell, this);
     }
 
 }

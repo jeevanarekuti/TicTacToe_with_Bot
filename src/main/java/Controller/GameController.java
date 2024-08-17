@@ -20,8 +20,8 @@ public class GameController {
         return game;
     }
 
-    public void makeMove(Game game,int row,int col,Player player){
-        game.makeMove(player,row,col);
+    public void makeMove(Game game){
+        game.makeMove();
     }
 
     public GameStatus getGameStatus(Game game){

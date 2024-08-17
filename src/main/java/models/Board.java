@@ -19,7 +19,7 @@ public class Board {
 
     public void displayBoard(){
         for(int i=0;i<cells.size();i++){
-            System.out.println("|");
+            System.out.print("|");
             for(int j=0;j<cells.size();j++){
                 Cell cell = cells.get(i).get(j);
                 if(cell.getCellState().equals(CellState.EMPTY)){

@@ -1,11 +1,9 @@
 package main.java.models;
 
-import main.java.Controller.GameController;
 import main.java.Exceptions.InvalidGameConstructionException;
-import main.java.Strategy.OrderNWinningStrategy;
-import main.java.Strategy.WinningStrategy;
+import main.java.Strategy.winning.OrderNWinningStrategy;
+import main.java.Strategy.winning.WinningStrategy;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,17 +48,12 @@ public class Game {
         return new GameBuilder();
     }
 
-    public void makeMove(Player player, int row, int col) {
+    public void makeMove() {
         //TODO handle scenario where player makes move on pre occupied cell
         //TODO handle draw case
 
         Player currPlayer = getCurrPlayer();
-        System.out.println(currPlayer.getName() + "'s turn, give row and col");
-        currPlayer.makeMove(getBoard());
-
-
-        Cell cell = this.board.setPlayer(player,row,col);
-        Move move = new Move(cell, getCurrPlayer());
+        Move move = currPlayer.makeMove(getBoard());
         moves.add(move);
 
         boolean playerHasWon = this.strategy.checkIfWon(board,move);
