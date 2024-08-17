@@ -34,4 +34,9 @@ public class Cell {
         this.cellState = CellState.OCCUPIED;
         return this;
     }
+
+    public void removePlayer() {
+        this.player = null;
+        this.cellState = CellState.EMPTY;
+    }
 }

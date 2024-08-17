@@ -6,6 +6,7 @@ import main.java.Strategy.winning.WinningStrategy;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Game {
     private Board board;
@@ -50,11 +51,21 @@ public class Game {
 
     public void makeMove() {
         //TODO handle scenario where player makes move on pre occupied cell
-        //TODO handle draw case
+        
 
         Player currPlayer = getCurrPlayer();
         Move move = currPlayer.makeMove(getBoard());
         moves.add(move);
+
+        if(!(currPlayer instanceof BotPlayer)){
+            System.out.println("Do you want to undo? (y/n)");
+            Scanner sc = new Scanner(System.in);
+            char option = sc.next().charAt(0);
+            if(option == 'y' || option == 'Y'){
+                undo();
+                return;
+            }
+        }
 
         boolean playerHasWon = this.strategy.checkIfWon(board,move);
 
@@ -63,9 +74,24 @@ public class Game {
             return;
         }
 
+        int size = board.getCells().size();
+        if(moves.size() == size * size){
+            gameStatus = GameStatus.DRAW;
+            return;
+        }
+
+
 
         this.currPlayerIndex++;
         this.currPlayerIndex %= players.size();
+    }
+
+    private void undo() {
+        //Remove that move from moves list
+        Move lastmove = moves.remove(moves.size() - 1);
+        Cell cell = lastmove.getCell();
+        //Update board
+        cell.removePlayer();
     }
 
     public static class GameBuilder{
